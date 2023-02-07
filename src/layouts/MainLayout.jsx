@@ -14,6 +14,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Grid,
 } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -130,19 +131,28 @@ const MainLayout = () => {
             )}
           </IconButton>
         </DrawerHeader>
-        <List>
-          {generalNavLinks.map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: "#fff" }}>{text.icons}</ListItemIcon>
-                <ListItemText
-                  primary={text.label}
-                  sx={{ color: "#fff", textTransform: "capitalize" }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {generalNavLinks.map((text, index) => (
+          <Grid key={index}>
+            <Typography color="#fff" variant="body1">
+              {text.menuLabel}
+            </Typography>
+            {text.children.map((e, i) => (
+              <List>
+                <ListItem key={e.label} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon sx={{ color: "#fff" }}>
+                      {e.icons}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={e.label}
+                      sx={{ color: "#fff", textTransform: "capitalize" }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            ))}
+          </Grid>
+        ))}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
