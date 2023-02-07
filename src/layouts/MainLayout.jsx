@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Loader from "../components/Loader";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -21,6 +21,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { generalNavLinks } from "../static/navLinks";
+import "./style.css";
 
 const drawerWidth = 300;
 
@@ -138,17 +139,19 @@ const MainLayout = () => {
             </Typography>
             {text.children.map((e, i) => (
               <List>
-                <ListItem key={e.label} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon sx={{ color: "#fff" }}>
-                      {e.icons}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={e.label}
-                      sx={{ color: "#fff", textTransform: "capitalize" }}
-                    />
-                  </ListItemButton>
-                </ListItem>
+                <NavLink to={e.link}>
+                  <ListItem className="item" key={e.label} disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon sx={{ color: "#fff" }}>
+                        {e.icons}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={e.label}
+                        sx={{ color: "#fff", textTransform: "capitalize" }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </NavLink>
               </List>
             ))}
           </Grid>
