@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Loader from "../components/Loader";
 import Header from "./Header";
-import PermanentDrawerLeft from "./PermanentDrawerLeft";
+import Drawer from "./Drawer";
 
 const MainLayout = () => {
   return (
@@ -11,7 +11,7 @@ const MainLayout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      <PermanentDrawerLeft />
+      <Drawer />
     </>
   );
 };
